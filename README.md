@@ -1,6 +1,10 @@
 # laravel-quick-api
 Quick API with Laravel and Docker (Ubuntu 18)
 
+
+
+
+-----------
 git clone https://github.com/laravel/laravel.git laravel-quick-api
 
 cd laravel-quick-api
@@ -19,3 +23,4 @@ cp .env.example .env
 
 sudo docker-compose exec app php artisan key:generate
 
+sudo chmod -R 777 storage && chmod -R 777 bootstrap/cache
