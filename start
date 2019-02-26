@@ -7,3 +7,5 @@ sudo docker exec laravel-quick-api_app_1 php artisan key:generate
 sudo docker exec laravel-quick-api_app_1 php artisan config:clear
 sudo docker exec laravel-quick-api_app_1 php artisan cache:clear
 sudo docker exec laravel-quick-api_app_1 php artisan migrate
+sudo docker exec laravel-quick-api_app_1 php artisan vendor:publish --provider="Tymon\JWTAuth\Providers\LaravelServiceProvider"
+sudo docker exec laravel-quick-api_app_1 php artisan jwt:secret
