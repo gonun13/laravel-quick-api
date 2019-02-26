@@ -1,7 +1,7 @@
 version: '3'
 services:
 
-  # The Application
+  # the application
   app:
     build:
       context: ./
@@ -10,6 +10,7 @@ services:
     volumes:
       - ./:/var/www
 
+  # web server
   web:
     build:
       context: ./
@@ -20,3 +21,26 @@ services:
     ports:
       - 8080:80
 
+  # mysql server
+  db:
+    image: mysql:5.7
+    volumes:
+      - dbdata:/var/lib/mysql
+    environment:
+      - "MYSQL_DATABASE=homestead"
+      - "MYSQL_USER=homestead"
+      - "MYSQL_PASSWORD=secret"
+      - "MYSQL_ROOT_PASSWORD=secret"
+    ports:
+      - "33061:3306"
+  
+  # phpmyadmin
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    depends_on:
+      - db
+    ports:
+      - "8081:80"
+
+volumes:
+  dbdata:

@@ -1,0 +1,3 @@
+sudo chown -R $USER:$USER ../laravel-quick-api
+sudo docker exec laravel-quick-api_app_1 php artisan config:clear
+sudo docker exec laravel-quick-api_app_1 php artisan cache:clear
