@@ -1,8 +1,11 @@
 # laravel-quick-api
 Quick API with Laravel and Docker (Ubuntu 18)
 
+git clone git@github.com:gonun13/laravel-quick-api.git
 
+cd laravel-quick-api.git
 
+./start
 
 -----------
 git clone https://github.com/laravel/laravel.git laravel-quick-api
