@@ -1,0 +1,1 @@
+curl -i -H "Accept: application/json" -H "Content-Type: application/json" -d '{"user":"nuno@bostix","title":"Best review possible","pro":"cool","contra":"bad", "suggestions":"fix it","rating":{"culture":1, "management":2, "work_live_balance":5, "career_development":10}}' 0.0.0.0:8080/api/companies/1/review
