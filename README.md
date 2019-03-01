@@ -36,12 +36,15 @@ This will list the highest and lowest rated review for a company (required Enhan
 ## Questions
 
 * How much test-coverage is desirable?
+
 100%.
 
 * What parts of your example do you like the least? 
+
 Did not move some business logic into helper classes. Yet.
 
 * How would you describe your coding style? What makes your code clean? Can you point out an example?
+
 Organize by stages. Proper identation, proper whitespace, consistency. 
 ```
 // only one review per user for this company
@@ -71,6 +74,14 @@ if ($review->exists && is_array($request->rating))
 return new ReviewResource($review);
  ```
 
-* 
-* 
-*
+* Did you use any design patterns? If so, why did you decide on that particular pattern? If not, then why not?
+
+No. Tried to respect the design patterns already chosen for the framework.
+
+* How maintainable is your code? What makes it maintainable?
+
+For now, without test coverage and helper classes I would say average. The rest is properly organized respecting the framework structure and should be easy to maintain.
+
+* What would be your preferred storage for solving a problem like this in a production environment and why?
+
+Either Mysql (SQL) or MongoDB (noSQL), or both. It really depends on the combination of features/performance per data mining required for evolving requirements.
