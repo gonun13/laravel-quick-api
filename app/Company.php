@@ -15,4 +15,12 @@ class Company extends Model
     {
       return $this->hasMany(Review::class);
     }
+
+    /**
+     * company can have many ratings
+     */
+    public function ratings()
+    {
+      return $this->hasManyThrough('App\Rating', 'App\Review');
+    }
 }

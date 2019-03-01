@@ -26,7 +26,10 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        //
+        $result = Company::find(1)->ratings;
+        var_dump($result);
+        exit;
+        //return CompanyResource::collection(Company::find(1));
     }
 
     /**
@@ -37,6 +40,7 @@ class CompanyController extends Controller
      */
     public function store(Request $request)
     {
+        $company_count = $review_count = 0;
         // insert all companies
         foreach($request->companies as $companyData)
         {
@@ -50,6 +54,11 @@ class CompanyController extends Controller
                     'industry' => $companyData['industry'],
                 ]
             );
+            // gather some stats for response
+            if ($company->wasRecentlyCreated) 
+            {
+                $company_count++;
+            }
             // insert reviews for company
             if ($company->exists && is_array($companyData['reviews']))
             {
@@ -68,10 +77,28 @@ class CompanyController extends Controller
                             'suggestions' => $reviewData['suggestions'],
                         ]
                     );
+                    // gather some stats for response
+                    if ($review->wasRecentlyCreated) 
+                    {
+                        $review_count++;
+                    }
+                    // insert rating into review (only one rating per review)
+                    if ($review->exists && is_array($reviewData['rating']))
+                    {
+                        $rating = Rating::firstOrCreate(
+                            ['review_id' => $review->id],
+                            [
+                                'culture' => $reviewData['rating']['culture'],
+                                'management' => $reviewData['rating']['management'],
+                                'work_live_balance' => $reviewData['rating']['work_live_balance'],
+                                'career_development' => $reviewData['rating']['career_development'],
+                            ]
+                        );
+                    }
                 }
             }
         }
-        return new CompanyResource($company);
+        return response()->json(['companiesInserted'=>$company_count, 'reviewsInserted'=>$review_count], 200);
     }
 
     /**
@@ -80,9 +107,9 @@ class CompanyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Company $company)
     {
-        //
+        return new CompanyResource($company);
     }
 
     /**
@@ -94,7 +121,7 @@ class CompanyController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return CompanyResource::cfind($id);
     }
 
     /**

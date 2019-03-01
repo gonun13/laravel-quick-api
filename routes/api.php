@@ -21,6 +21,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('register', 'AuthController@register');
 Route::post('login', 'AuthController@login');
 
-//Route::apiResource('companies', 'CompanyController');
+Route::apiResource('companies', 'CompanyController');
 Route::post('companies/{company_id}/review', 'ReviewController@store');
 Route::post('companies/load', 'CompanyController@store');

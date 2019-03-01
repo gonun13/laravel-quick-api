@@ -10,14 +10,6 @@ class Review extends Model
     protected $fillable = ['company_id', 'user', 'title', 'pro', 'contra', 'suggestions'];
 
     /**
-     * review belongs to only one user
-     */
-    public function userReview()
-    {
-      return $this->belongsTo(User::class);
-    }
-
-    /**
      * review belongs to only one company
      */
     public function companyReview()

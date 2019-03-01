@@ -12,8 +12,8 @@ class Rating extends Model
     /**
      * rating belongs to only one review
      */
-    public function rating()
+    public function reviewRating()
     {
-      return $this->belongsTo(Rating::class);
+      return $this->belongsTo(Review::class);
     }
 }
