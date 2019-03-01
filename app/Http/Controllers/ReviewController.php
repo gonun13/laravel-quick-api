@@ -44,9 +44,9 @@ class ReviewController extends Controller
         {
             // only one review per user for this company
             $review = Review::firstOrCreate(
-                ['company_id' => $company->id],
+                ['user' => $request->user],
                 [
-                    'user' => $request->user,
+                    'company_id' => $company->id,
                     'title' => $request->title,
                     'pro' => $request->pro,
                     'contra' => $request->contra,

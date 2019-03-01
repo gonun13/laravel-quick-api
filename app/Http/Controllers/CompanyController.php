@@ -26,10 +26,19 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        $result = Company::find(1)->ratings;
-        var_dump($result);
-        exit;
-        //return CompanyResource::collection(Company::find(1));
+        // build companies with ratings
+        $results = array();
+        $companies = Company::all();
+        foreach ($companies as $company)
+        {
+            $ratings = $company->find($company->id)->ratings;
+            $company->avgCulture = round($ratings->avg('culture'), 2);
+            $company->avgManagement = round($ratings->avg('management'), 2);
+            $company->avgWork_live_balance = round($ratings->avg('work_live_balance'), 2);
+            $company->avgCareer_development = round($ratings->avg('career_development'), 2);
+            $results[] = $company;
+        }
+        return $results;
     }
 
     /**
@@ -110,6 +119,36 @@ class CompanyController extends Controller
     public function show(Company $company)
     {
         return new CompanyResource($company);
+    }
+
+    /**
+     * Display the highest and lowest
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function highlow(Request $request)
+    { 
+        $reviews = Review::with('rating')->where('company_id', $request->company_id)->get();
+        // find highest and lowest rated review
+        $high = $low = 0;
+        $highest = $lowest = new Review();
+        foreach ($reviews as $review)
+        {
+            $total = $review->rating['culture'] + $review->rating['management'] + $review->rating['work_live_balance'] + $review->rating['career_development'];
+            if (!$low) $low = $total;
+            if ($total > $high) 
+            {
+                $high = $total;
+                $highest = $review;
+            }
+            else if ($total < $low)
+            {
+                $low = $total;
+                $lowest = $review;
+            }
+        }
+        return array("highestReview"=>$highest, "lowestReview"=>$lowest);
     }
 
     /**

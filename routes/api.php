@@ -23,4 +23,5 @@ Route::post('login', 'AuthController@login');
 
 Route::apiResource('companies', 'CompanyController');
 Route::post('companies/{company_id}/review', 'ReviewController@store');
+Route::get('companies/{company_id}/highlow', 'CompanyController@highlow');
 Route::post('companies/load', 'CompanyController@store');
