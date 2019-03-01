@@ -4,10 +4,10 @@ Quick API for Kununu test
 
 Steps to install (requires sudo level)
 
-`
+```
 git clone git@github.com:gonun13/laravel-quick-api.git
 
 cd laravel-quick-api.git
 
 ./start
-`
+```
