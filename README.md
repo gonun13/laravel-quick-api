@@ -33,3 +33,7 @@ This will add an extra review to a company
 `./tests/curls/curl_showHighLow`
 This will list the highest and lowest rated review for a company (required Enhancement)
 
+# Questions
+
+* How much test-coverage is desirable?
+100%
