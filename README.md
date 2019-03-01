@@ -37,3 +37,40 @@ This will list the highest and lowest rated review for a company (required Enhan
 
 * How much test-coverage is desirable?
 100%.
+
+* What parts of your example do you like the least? 
+Did not move some business logic into helper classes. Yet.
+
+* How would you describe your coding style? What makes your code clean? Can you point out an example?
+Organize by stages. Proper identation, proper whitespace, consistency. 
+```
+// only one review per user for this company
+$review = Review::firstOrCreate(
+    ['user' => $request->user],
+    [
+        'company_id' => $company->id,
+        'title' => $request->title,
+        'pro' => $request->pro,
+        'contra' => $request->contra,
+        'suggestions' => $request->suggestions,
+    ]
+);
+// if insert goes well, add rating
+if ($review->exists && is_array($request->rating))
+{
+    $rating = Rating::firstOrCreate(
+        ['review_id' => $review->id],
+        [
+            'culture' => $request->rating['culture'],
+            'management' => $request->rating['management'],
+            'work_live_balance' => $request->rating['work_live_balance'],
+            'career_development' => $request->rating['career_development'],
+        ]
+    );
+}
+return new ReviewResource($review);
+ ```
+
+* 
+* 
+*
