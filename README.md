@@ -14,7 +14,7 @@ cd laravel-quick-api
 
 Running start will: install laravel and all vendor dependencies, set permissions, fire docker, prepare laravel and run migrations
 
-# How to test
+## How to test
 
 A number of Curl calls are available for testing all features.
 
@@ -33,7 +33,7 @@ This will add an extra review to a company
 `./tests/curls/curl_showHighLow`
 This will list the highest and lowest rated review for a company (required Enhancement)
 
-# Questions
+## Questions
 
 * How much test-coverage is desirable?
-100%
+100%.
