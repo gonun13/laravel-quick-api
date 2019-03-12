@@ -1,8 +1,16 @@
-git clone https://github.com/laravel/laravel.git laravel-quick-api
+git clone https://github.com/laravel/laravel.git <project>
 
-cd laravel-quick-api
+cd <project>
 
 rm -rf .git/
+
+git init
+
+git add .
+
+git commit -m "First commit"
+
+git remote add origin <remote repository URL>
 
 sudo docker run --rm -v $(pwd):/app composer install
 
