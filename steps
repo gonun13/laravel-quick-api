@@ -4,17 +4,21 @@ cd <project>
 
 rm -rf .git/
 
+echo "# <project>" >> README.md
+
 git init
 
 git add .
 
-git commit -m "First commit"
+git commit -m "first commit"
 
-git remote add origin <remote repository URL>
+git remote add origin <project_remote_git>
+
+git push -u origin master
 
 sudo docker run --rm -v $(pwd):/app composer install
 
-sudo chown -R $USER:$USER ../laravel-quick-api
+sudo chown -R $USER:$USER $(pwd)/
 
 nano docker-compose.yml
 
