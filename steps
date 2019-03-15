@@ -16,16 +16,20 @@ git remote add origin <project_remote_git>
 
 git push -u origin master
 
-sudo docker run --rm -v $(pwd):/app composer install
+cp ../laravel_quick_api/docker-compose.yml ../<project>/
 
-sudo chown -R $USER:$USER $(pwd)/
+cp ../laravel_quick_api/app.dockerfile ../<project>/
 
-nano docker-compose.yml
+cp ../laravel_quick_api/web.dockerfile ../<project>/
+
+cp ../laravel_quick_api/vhost.conf ../<project>/
 
 sudo docker-compose up -d
 
-cp .env.example .env
+cp ../laravel_quick_api/start ../<project>/
 
-sudo docker-compose exec app php artisan key:generate
+cp ../laravel_quick_api/stop ../<project>/
 
-sudo chmod -R 777 storage && chmod -R 777 bootstrap/cache
+nano .env.example (change DB host to docker db)
+
+./start
